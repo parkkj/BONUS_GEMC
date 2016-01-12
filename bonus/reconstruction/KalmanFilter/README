@@ -1,0 +1,18 @@
+To run the Code.
+> root
+> .x KFilter_V6.C
+# it contains an user defined event generator.
+
+
+Note @ Dec.18,2015 KF meeting
+check the fitting results with statistics 100event for example
+with various momentum and angle of theta
+p= 70,80,90,100,120 MeV/c
+theta= 70, 80, 90, 100 deg
+
+1/ try to calculate the delta_p /p_gen
+where delta_p = p_gen - p_recon 
+
+2/ Optimize the HelixFit result...(I know it does not affect to KF fit)
+
+3/ maybe take a look at the delta_p/ p as a function p or theta dependence 

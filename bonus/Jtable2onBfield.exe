@@ -1,0 +1,54 @@
+#!/usr/bin/perl 
+use Math::Trig;
+use Math::Complex;
+
+# this file is 70MeV/c of proton with He/DMe=90/10 gas mixture WITH Solenoid field
+$inFileName = "DavidJixie_Table";
+$outFileName = "Jout_DavidJixie_Table";
+
+
+
+open(in,"$inFileName\.txt");
+@all = <in>;
+close(in);
+$count =0;
+
+open(out,">$outFileName.txt");
+
+for($i=1;$i<$#all;$i++){
+    @items   = split(/,/,$all[$i]);
+
+    $count   = $count +1;
+    $X       = $items[1];
+    $Y       = $items[2];
+    $Z       = $items[3];
+    $A = sqrt($X**2+$Y**2+$Z**2);
+    $EKin    = $items[4]; # MeV
+    
+    $dE_cal  = $items[6]; # KeV
+    $Mom_sim = $items[7]; # MeV
+    $Mom_cal = $items[8]; # MeV
+ 
+    $theta   = $items[9]; # deg
+    $phi     = $items[10]; # deg
+    
+    $LStep   = $items[11]; # mm
+    $LTrack  = $items[12]; # mm
+    $LRad    = $items[13]; # m
+
+    $gamma   = $items[16];
+    $beta    = $items[17];
+
+    $BB_He   = $items[18]; # KeV/mm
+    $BB_DME  = $items[19]; # KeV/mm
+    $BB_tot  = $items[20];
+
+    $EdepPerMM = ($dE_cal)/($LStep);
+    
+#    printf ("$count, %8.4f, %8.4f, %8.4f, %10.6f, %10.6f, %8.4f, %8.4f, %8.4f, %10.6f ",$X,$Y,$Z,$LTrack,$dE_cal,$Mom_sim*($X/$A),$Mom_sim*($Y/$A),$Mom_sim*($Z/$A),$BB_tot);
+#    print "???  $EdepPerMM \n";
+ 
+printf out (" %8.4f, %10.6e \n",$A,$Mom_sim);   
+}
+
+close(out);

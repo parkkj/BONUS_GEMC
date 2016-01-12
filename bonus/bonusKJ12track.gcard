@@ -1,0 +1,76 @@
+<gcard>
+	<detector name="bonus" factory="TEXT" variation="original"/>
+	<detector name="../targets/target" factory="TEXT" variation="GD2"/>
+	<option name="HALL_FIELD"  value="clas12-solenoid"/>
+
+	<option name="BEAM_P" value="proton, 65.*MeV, 90*deg, 00*deg"/>
+
+	<option name="ALLRAWS" value="xbonus"/>
+	<option name="BANK_VERBOSITY" value="0"/>	
+	<option name="geometry" value="700x700"/>
+
+        <option name="HIT_VERBOSITY" value="0"/>
+	<option name="GEN_VERBOSITY" value="0"/>
+	<option name="MATERIAL_VERBOSITY" value="0"/>
+
+	<option name="G4TRACK_VERBOSITY" value="1"/>
+
+	<option name="HIGH_RES" value="1"/>
+	<option name="PHYSICS" value="FTFP_BERT + LIV"/>
+
+        <option name="N" value="1"/>
+ 	<option name="OUTPUT" value="evio,bonus_default_gemc_out.evio"/>
+
+	<option name="USE_GUI"  value="1"/>
+</gcard>
+
+<!--  comment out
+
+ 	<option name="OUTPUT" value="evio,bonus_default_gemc_out.evio"/>
+
+	<option name="BEAM_V" value="(2.5,2.5,0)cm"/>	
+	<option name="INPUT_GEN_FILE" value="LUND,./lund/lund_ed_fixtgt_ps_150mev.weiss.dat"/>
+	<option name="HALL_FIELD"  value="clas12-solenoid"/>
+	<detector name="../magnets/solenoid" factory="TEXT" variation="original"/>
+        <detector name="../micromegas/micromegas" factory="TEXT" variation="original"/>
+        <detector name="../ctof/ctof" factory="TEXT" variation="original"/>
+
+
+<option name="PHYSICS" value="FTFP_BERT + STD"/>
+
+<option name="OUTPUT" value="txt,out.txt"/>
+<option name="BEAM_P" value="proton, 0.12*GeV, 90*deg, 10*deg"/>
+
+	<option name="INTEGRATEDRAW" value="xbonus"/>
+	<option name="HALL_FIELD"  value="clas12-solenoid"/>
+
+
+	<detector name="../magnets/solenoid" factory="TEXT" variation="original"/>
+	<option name="EXEC_MACRO" value="bonus12_slice.vis"/>
+        <option name="HIT_VERBOSITY" value="100"/>
+	<option name="INPUT_GEN_FILE" value="LUND,./lund/lund_ed_fixtgt_ps_150mev.weiss.dat"/>
+
+	<option name="BEAM_P" value="proton, 90*MeV, 90*deg, 0*deg"/>
+
+	<option name="HALL_MATERIAL" value="Air"/>
+
+      <option name="INPUT_GEN_FILE" value="LUND,./lund/lund_ed_fixtgt_ps_150mev.weiss.dat"/>
+
+	<detector name="../magnets/solenoid" factory="TEXT" variation="original"/>
+        <detector name="../micromegas/micromegas" factory="TEXT" variation="original"/>
+        <detector name="../bst/bst" factory="TEXT" variation="original"/>
+        <detector name="../ctof/ctof" factory="TEXT" variation="original"/>
+ 	<option name="INTEGRATEDRAW" value="ctof"/>
+
+
+
+ 	<option name="GEN_VERBOSITY" value=10"/> 
+
+
+
+	<option name="OUTPUT" value="txt,out.txt"/>
+
+for the printing the G4Track information
+ -Option=G4TRACK_VERBOSITY
+
+-->

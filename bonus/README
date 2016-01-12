@@ -1,0 +1,61 @@
+1/ how to create bank structure into ROOT file ?
+[Solution]
+ evio2root -B=bonus -WRITE_RAWS=No -INPUTF=bonus_gemc_out.evio
+=> ROOT fiel contains the "xbonus" bank
+=> You need to kill al other bank structure which are empty
+
+2/ BONUS raw data: 
+ ADC energy deposition (charge integration)
+ Time information (TDC) from GEM or GEM+WC
+[Q1] Need to know what/how integrate the proton deposit energy into ADC
+[Q2] where we get TDC info ? from 1st layer of wire chamber ? 
+
+3/ Need a drift velocity information in term of gas mixture and pressure
+=> Gail is calculating average....
+
+4/ Manipulate the B-field and E-field ?? possible...Do we need this ?
+[Q] Alternatively, we can have extra-step, which is MegaBolt code for drift time cal.
+=> This is "3/" issue.
+
+
+5/ How to stop tracking outside of BONUS
+=> To avoid particle not back into detector again
+[Q] Why low momentum proton track is still passing through entire materials ?
+[Solution] When the geometry's created, it should be "mother=root" !!
+Then you see the track is trapped by even PCB...
+
+6/ How to build the first layer of wire (geometry) in the BONUS.... 
+[Q] Is this final design ? or even possible ? No....
+[A] no need a further study....because there is a big dis-adventage for detecting lower momentum of proton (lost VIP)
+
+7/ ROHACELL simulation....
+(a) Need to figure what what material is ....
+[Solution] Actually, it is already defined in the BST material packages
+In addition, I copied the pc Board as well.
+
+
+8/ hit_Process with ElectronTraport information from the MagBoltz (G. Dodge)
+a) Jixie has a draft version of G4 code implemting electron drift information.
+b) need to modify his code for GEMC....currently GEMC has integrated mode.
+ -> need to seperated identifier CellID, PhiCellID, zCellID, ....
+ -> no need to take into account multi hit from a single ionization point
+ -> Jixie's minimum step size=0.07 cm ??? but why it is random ?
+
+
+
+Commnet:
+12/02/2015
+1/ changing the bonus_hitprocess.cc with MagBoltz electro drift transport formular and put the CellID at each ionization point.
+-> This make to be visiable red-dots at each ionization point in graphic interface
+
+
+GEMC options:
+
+gemc **.gcard -G4TRACK_VERBOSITY=1 : print out all tracks
+
+
+9/ There is a bug when I implemet Gasous D2 target in the cpp_material.cc that is one of the GEMC source files.
+[Problem] proton minimum momentum is 72MeV/c that is way high from Kuhn and Jixie simulation....
+[Reason] the mMixHeGasD and mMixDMEGasD should have a dimensionless definition of density.
+[Solution] remove the "*mg/cm3" in line 73,74
+Add "*kelvin" temperature unit in the line 81, 82

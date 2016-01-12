@@ -1,0 +1,54 @@
+<gcard>
+	<detector name="bonus" factory="TEXT" variation="original"/>
+	<option name="ALLRAWS" value="xbonus"/>
+	<option name="BANK_VERBOSITY" value="1700"/>	
+	<option name="geometry" value="700x700"/>
+	<detector name="../magnets/solenoid" factory="TEXT" variation="original"/>
+	<detector name="../targets/target" factory="TEXT" variation="GD2"/>
+
+	<detector name="../magnets/solenoid" factory="TEXT" variation="original"/>
+        <detector name="../micromegas/micromegas" factory="TEXT" variation="original"/>
+        <detector name="../ctof/ctof" factory="TEXT" variation="original"/>
+
+        <option name="HIT_VERBOSITY" value="100"/>
+
+	<option name="HALL_FIELD"  value="clas12-solenoid"/>
+	<option name="HIGH_RES" value="1"/>
+
+
+	<option name="PHYSICS" value="FTFP_BERT + STD"/>
+
+	<option name="EXEC_MACRO" value="bonus12_slice3.vis"/>
+	<option name="GEN_VERBOSITY" value="100"/>
+	<option name="OUTPUT" value="txt,out.txt"/>
+</gcard>
+<!--  comment out
+	<option name="INPUT_GEN_FILE" value="LUND,./lund/lund_ed_fixtgt_ps_150mev.weiss.dat"/>
+	<option name="INTEGRATEDRAW" value="xbonus"/>
+
+	<option name="EXEC_MACRO" value="bonus12_slice.vis"/>
+        <option name="HIT_VERBOSITY" value="100"/>
+	<option name="INPUT_GEN_FILE" value="LUND,./lund/lund_ed_fixtgt_ps_150mev.weiss.dat"/>
+
+	<option name="HALL_MATERIAL" value="Air"/>
+
+      <option name="INPUT_GEN_FILE" value="LUND,./lund/lund_ed_fixtgt_ps_150mev.weiss.dat"/>
+
+	<detector name="../magnets/solenoid" factory="TEXT" variation="original"/>
+        <detector name="../micromegas/micromegas" factory="TEXT" variation="original"/>
+        <detector name="../bst/bst" factory="TEXT" variation="original"/>
+        <detector name="../ctof/ctof" factory="TEXT" variation="original"/>
+ 	<option name="INTEGRATEDRAW" value="ctof"/>
+
+
+
+ 	<option name="GEN_VERBOSITY" value=10"/> 
+
+
+
+	<option name="OUTPUT" value="txt,out.txt"/>
+
+for the printing the G4Track information
+ -Option=G4TRACK_VERBOSITY
+
+-->

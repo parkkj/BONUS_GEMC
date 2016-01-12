@@ -1,0 +1,36 @@
+#!/usr/bin/perl 
+use Math::Trig;
+use Math::Complex;
+
+# this file is 70MeV/c of proton with He/DMe=90/10 gas mixture WITHOUT Solenoid field
+$inFileName = "out_proton70mev";
+$outFileName = "Rout_proton70mev";
+
+
+
+open(in,"$inFileName\.txt");
+@all = <in>;
+close(in);
+$count =0;
+
+open(out,">$outFileName.txt");
+
+for($i=0;$i<=$#all;$i++){
+
+    if($all[$i]=~/Step=0/i){
+	@items = split(/, /,$all[$i]);
+	$count = $count +1;
+	for($j=0;$j<=$#items;$j++){
+	    @array = split(/=/,$items[$j]);
+	    if($items[$j]=~/x/i){$X=$array[1]/1;}
+	    if($items[$j]=~/y/i){$Y=$array[1]/1;}
+	    if($items[$j]=~/z/i){$Z=$array[1]/1;}
+	    if($items[$j]=~/Length/i){$LTrack=$array[1]/1;}
+	    if($items[$j]=~/Dep/i){$Edep=$array[1]/1;}
+
+	}
+	printf out ("$count, %8.4f, %8.4f, %8.4f, %10.6f, %10.6f \n",$X,$Y,$Z,$LTrack,$Edep);
+    }
+}
+
+close(out);

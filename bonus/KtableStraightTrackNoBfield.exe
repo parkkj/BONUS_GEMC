@@ -1,0 +1,41 @@
+#!/usr/bin/perl 
+use Math::Trig;
+use Math::Complex;
+
+# this file is 70MeV/c of proton with He/DMe=90/10 gas mixture WITHOUT Solenoid field
+#$inFileName = "temp_0ev";
+#$outFileName = "R70mevstraighttrack2L";
+$inFileName = "temp_10ev";
+$outFileName = "R70mevstraighttrack3L";
+
+
+
+open(in,"$inFileName");
+@all = <in>;
+close(in);
+$count =0;
+
+open(out,">$outFileName.txt");
+
+for($i=1;$i<=$#all;$i++){
+
+    $NStep = substr($all[$i],1,6);
+    $X = substr($all[$i],8,6);
+    $Y = substr($all[$i],15,8);
+    $Z = substr($all[$i],24,8);
+    $KinE = substr($all[$i],35,7);
+    $Edep = substr($all[$i],42,9);
+    $LStep  = substr($all[$i],52,8);
+    $LTrack = substr($all[$i],62,8);
+
+
+   
+#    printf out ("%4d, %8.4f, %8.4f, %8.4f, %10.4e, %10.4e \n",$i,$X,$Y,$Z,$LTrack,$Edep);
+#    printf out ("%8.4f, %10.4e\n",$LStep,$LTrack);
+#    printf  out ("%8.4f, %10.4e\n",$Edep,$KinE);
+#    printf  out ("%8.4f, %10.4e\n",$Edep,$LStep);
+    printf  out ("%8.4f, %10.4e\n",$Edep,$LTrack);
+
+}
+
+close(out);

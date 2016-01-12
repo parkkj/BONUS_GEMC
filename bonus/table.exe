@@ -1,0 +1,41 @@
+#!/usr/bin/perl 
+use Math::Trig;
+use Math::Complex;
+
+$inFileName = "70mev90deg.9010";
+#$inFileName = "70mev90deg.8218";
+
+open(in,"$inFileName\.txt");
+@all = <in>;
+close(in);
+
+$GivenEnergy = 70.0; # Proton momentum Unit MeV/c
+
+
+$nrow =2;
+$ncolumn=114;
+
+for($i=1;$i<=$nrow;$i++){
+    @items = split(/\t/,$all[$i]);
+    for($j=0;$j<=$ncolumn;$j++){
+	$array[$i][$j]=$items[$j];
+    }    
+}
+
+$Edep = $GivenEnergy;
+$ofilename = "$inFileName\.dat";
+system("rm -f $ofilename");
+
+open(out,">$ofilename");
+for($l=0;$l<=$ncolumn;$l++){
+    $Edep = ($array[1][$l])*1000.; # Unit KeV/c
+    $Etot = $Etot-($array[1][$l])/1.; # Unit MeV/c
+    $Time = ($array[2][$l])/1.; # Unit ns
+    $nStep= $l+1; # integer
+    
+#    print out "$Etot,  $Time, $nStep \n";
+    print out "$nStep, $Edep \n"; # this format is for David Payette 
+}
+
+close(out);
+

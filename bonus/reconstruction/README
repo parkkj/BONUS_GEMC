@@ -1,0 +1,30 @@
+Jixie's directory under ifarm (JLab machine)
+
+/u/home/jixie/2006/BONUS3.3
+
+
+Copy his directory directly...
+> /lustre/expphy/volatile/clas/claseg3/parkkj/bonus12/detectors/clas12/bonus/reconstruction
+
+and
+
+> cvs co bonus/Simulation
+
+
+
+++++++++++++++++++++++ Sep. 16, 2015
+Q) I don't know how to compile thee codes.....(no documentation)
+
+Q) Overall a chain of simulation is not clear to me.....
+ask to Jixie...
+1/ for example, what BONUS (the very first step) is ? Is it EG ?
+2/ GSIM+BONUS ...should be as detector simulation....
+3/ Recontruction code for BONUS should be independent from CLAS ?
+
+
+Q) How it works ? 
+BONUS -> GSIM -> GPP -> RECONS
+
+
+
+

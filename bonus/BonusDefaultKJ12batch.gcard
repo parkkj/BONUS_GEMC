@@ -1,0 +1,28 @@
+<gcard>
+	<detector name="bonus" factory="TEXT" variation="original"/>
+	<option name="INPUT_GEN_FILE" value="LUND,./lund/lund_ed_fixtgt_ps_150mev.weiss.dat"/>
+	<option name="ALLRAWS" value="xbonus"/>
+	<option name="BANK_VERBOSITY" value="1700"/>	
+	<option name="geometry" value="700x700"/>
+	<detector name="../magnets/solenoid" factory="TEXT" variation="original"/>
+	<detector name="../targets/target" factory="TEXT" variation="GD2"/>
+
+        <option name="HIT_VERBOSITY" value="100"/>
+
+	<option name="HALL_FIELD"  value="clas12-solenoid"/>
+	<option name="HIGH_RES" value="1"/>
+
+	<option name="HALL_MATERIAL" value="Air"/>
+	<option name="BANK_VERBOSITY" value="1700"/>
+
+	<option name="RECORD_PASSBY" value="1"/>
+	<option name="N" value="3"/>
+	<option name="OUTPUT" value="evio,bonus_default_gemc_out.evio"/>
+	<option name="USE_GUI"  value="0"/>
+
+	<option name="PHYSICS" value="FTFP_BERT + STD"/>
+</gcard>
+<!--  comment out
+	<option name="INTEGRATEDRAW" value="xbonus"/>
+	<option name="HALL_FIELD"  value="clas12-solenoid"/>
+-->

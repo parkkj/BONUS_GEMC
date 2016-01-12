@@ -1,0 +1,103 @@
+#!/usr/bin/perl 
+use Math::Trig;
+use Math::Complex;
+
+# this file is Various of proton with He/DMe=90/10 gas mixture WITH Solenoid field
+# Momentum : 65, 70, 72(LIV/STD), 90, 120, 180
+# I expect high proton momentum should show more difference between STD and LIV modes
+$Momentum = 65;
+
+
+for($l=0;$l<2;$l++){
+
+    if($l==0){$TYPE="STD";}
+    else{$TYPE="LIV";}
+
+$inFileName = "out_proton$Momentum\mevOnSolenoid3$TYPE";
+$outFileName = "Rout_proton$Momentum\mevOnSolenoid3$TYPE";
+
+$Mp= 0.939272;
+$LengTrack =0;
+$EdepTot =  0;
+$E0 =0 ;
+
+open(in,"$inFileName\.txt");
+@raw = <in>;
+close(in);
+$count =0;
+
+open(out,">$outFileName.txt");
+system("rm -f temp");
+open(oo,">temp");
+for($i=0;$i<=$#raw;$i++){
+    if($raw[$i]=~/Step=0/i){
+	printf oo $raw[$i];
+    }
+}
+close(oo);
+
+#    system("more temp");
+    
+open(in2,"temp");
+@all = <in2>;
+close(in2);
+
+for($i=0;$i<1;$i++){
+	@itemsI = split(/, /,$all[$i]);
+	$pX0 = $itemsI[6];
+	$pY0 = $itemsI[7];
+	$pZ0 = $itemsI[8];
+	$p0 = sqrt($pX0*$pX0+$pY0*$pY0+$pZ0*$pZ0);
+	$E0 = sqrt($Mp**2+$p0**2);
+}
+    $EdepTot = $E0;
+    
+for($i=0;$i<=$#all;$i++){
+	@items = split(/, /,$all[$i]);
+	@itemsN = split(/, /,$all[$i+1]);
+	$count = $count +1;
+	$X = $items[1];
+	$Y = $items[2];
+	$Z = $items[3];
+	$A = sqrt($X**2+$Y**2+$Z**2);
+	
+	$XN = $itemsN[1];
+	$YN = $itemsN[2];
+	$ZN = $itemsN[3];	
+	$AN = sqrt($XN**2+$YN**2+$ZN**2);
+
+	$LTrack = $items[4];
+	$Edep = $items[5];
+	$pX = $items[6];
+	$pY = $items[7];
+	$pZ = $items[8];
+	$p = sqrt($pX*$pX+$pY*$pY+$pZ*$pZ);
+	$E_cal = sqrt($Mp**2+$p**2);
+
+	$EdepN = $itemsN[5];
+	$pXN = $itemsN[6];
+	$pYN = $itemsN[7];
+	$pZN = $itemsN[8];
+	$pN = sqrt($pXN*$pXN+$pYN*$pYN+$pZN*$pZN);
+	$E_calN = sqrt($Mp**2+$pN**2);
+
+
+	$dE_cal = ($E_cal - $E_calN) ;
+
+	$LengTrack = $LengTrack + abs(sqrt(($X-$XN)**2+($Y-$YN)**2+($Z-$ZN)**2));
+#	$EdepTot = $EdepTot - $Edep ;
+	$EdepTot = $EdepTot - $dE_cal ;
+	    
+
+
+#	print "	$dE_cal = $E_cal - $E_calN \n";
+#	printf ("$count, %8.4f, %8.4f, %8.4f, %10.6f, %10.6e, %8.4f, %8.4f, %8.4f, %10.6f \n",$X,$Y,$Z,$LTrack,$Edep,$pX,$pY,$pZ,$p);
+
+#	printf out (" %10.6e, %10.6e \n",$EdepN,$dE_cal);
+	printf  out (" %10.6e, %10.6e \n",$LengTrack,$EdepTot); # 20. for KeV2ADC
+    
+}
+
+close(out);
+
+}
