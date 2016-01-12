@@ -2,7 +2,7 @@
 modular GEMC code for BONuS12 detector system with reconstruction code
 
 ####################################################################
-# This is trial and error to figure out problem that you may face to....
+# README file may help you figure out problem that you are struggling....
 ####################################################################
 
 1/ how to create bank structure into ROOT file ?
@@ -15,14 +15,25 @@ modular GEMC code for BONuS12 detector system with reconstruction code
  ADC energy deposition (charge integration)
  Time information (TDC) from GEM or GEM+WC
 [Q1] Need to know what/how integrate the proton deposit energy into ADC
+=> Total energy loss during the track
+=> Should be understood the eloss per step size (0.1mm or 0.5mm)
+=> Given 0.1mm step size, We understood a straight track with eloss and
+produces a consistent result with Bethe-Bloch calculation
+
 [Q2] where we get TDC info ? from 1st layer of wire chamber ? 
+=> Magboltz calculation gives you a electron drift velocity which interpereted
+to TDC
 
 3/ Need a drift velocity information in term of gas mixture and pressure
 => Gail is calculating average....
+=> Impelemted the Magboltz calulation into GEMC (reproducible Jixie's result)
+[a] For now, only for single good track case...
+[b] For future, we need to implement multi-tracks
 
 4/ Manipulate the B-field and E-field ?? possible...Do we need this ?
 [Q] Alternatively, we can have extra-step, which is MegaBolt code for drift time cal.
 => This is "3/" issue.
+
 
 5/ How to stop tracking outside of BONUS
 => To avoid particle not back into detector again
@@ -46,6 +57,7 @@ b) need to modify his code for GEMC....currently GEMC has integrated mode.
  -> need to seperated identifier CellID, PhiCellID, zCellID, ....
  -> no need to take into account multi hit from a single ionization point
  -> Jixie's minimum step size=0.07 cm ??? but why it is random ?
+These are resolved some point, please take a look at the Kijun's Bonus Wiki
 
 
 ======
